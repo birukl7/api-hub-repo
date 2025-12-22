@@ -1,8 +1,14 @@
 <div align="center">
 
-# API Hub
-
-**Your Central Gateway to the Web's Best Public APIs.**
+<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+  <div style="background: white; padding: 8px; border-radius: 8px; display: inline-block; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <img src="api-hub-logo.png" alt="API Hub Logo" style="height: 60px; width: auto; display: block;">
+  </div>
+  <div>
+    <h1 style="margin: 0;">API Hub</h1>
+    <p style="margin: 0;"><strong>Your Central Gateway to the Web's Best Public APIs.</strong></p>
+  </div>
+</div>
 
 </div>
 

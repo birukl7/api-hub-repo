@@ -51,6 +51,11 @@ app.get("/post/:id", async (c) => {
     let result = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
     return c.json(result.data)
 })
+app.get("/post/:id/comments", async (c) => {
+    let id = c.req.param("id")
+    let result = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+    return c.json(result.data)
+})
 
 //* FETCH ALL COMMENTS
 app.get("/comments", async (c) => {
@@ -76,6 +81,11 @@ app.get("/albums/:page?/:limit?", async (c) => {
 app.get("/album/:id?", async (c) => {
     let id = c.req.param("id") || 1
     let result = await axios.get(`https://jsonplaceholder.typicode.com/albums/${id}`)
+    return c.json(result.data)
+})
+app.get("/album/:id/photos", async (c) => {
+    let id = c.req.param("id")
+    let result = await axios.get(`https://jsonplaceholder.typicode.com/albums/${id}/photos`)
     return c.json(result.data)
 })
 
@@ -126,12 +136,17 @@ app.get("/users/:page?/:limit?", async (c) => {
 
 //* FETCH SINGLE USER
 app.get("/user", (c) => {
-    var response = "/jsonplaceholder/user/:id route fetches the specified user using the ID specified. /jsonplaceholder/user/:id/posts route fetches the posts of the current user. /jsonplaceholder/user/:id/todos route fetches the todos of the current user."
+    var response = "/jsonplaceholder/user/:id route fetches the specified user using the ID specified. /jsonplaceholder/user/:id/posts route fetches the posts of the current user. /jsonplaceholder/user/:id/todos route fetches the todos of the current user. /jsonplaceholder/user/:id/albums route fetches the albums of the current user."
     return c.json(response);
 })
 app.get("/user/:id", async (c) => {
     let id = c.req.param("id") 
     let result = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+    return c.json(result.data)
+})
+app.get("/user/:id/albums", async (c) => {
+    let id = c.req.param("id")
+    let result = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}/albums`)
     return c.json(result.data)
 })
 

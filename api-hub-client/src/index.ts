@@ -16,6 +16,11 @@ import { flixquestApi } from "./flixquest";
 import { googlebooksApi } from "./googlebooks";
 import { hackernewsApi } from "./hackernews";
 import { jsonplaceholderApi } from "./jsonplaceholder";
+import {restCountriesApi} from "./restcountries";
+import {tvMazeApi} from "./tvmaze";
+import {weatherApi} from "./weather";
+import {redditApi} from "./reddit";
+
 
 export class ApiHubClient {
   github;
@@ -35,7 +40,10 @@ export class ApiHubClient {
   moviedb;
   news;
   newyorktimes;
-
+  restcountries;
+  tvmaze;
+  weather;
+  reddit;
   constructor({ baseUrl }: { baseUrl: string }) {
     const client = new HttpClient(baseUrl);
     this.github = githubApi(client);
@@ -55,5 +63,9 @@ export class ApiHubClient {
     this.moviedb = moviedbApi(client);
     this.news = newsApi(client);
     this.newyorktimes = newyorktimesApi(client);
+    this.restcountries = restCountriesApi(client);
+    this.tvmaze = tvMazeApi(client);
+    this.weather = weatherApi(client);
+    this.reddit = redditApi(client);
   }
 }

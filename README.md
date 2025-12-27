@@ -118,7 +118,8 @@ The server requires API keys for certain routes (e.g., YouTube, NewsAPI).
     NY_TIMES_API_KEY=your_ny_times_api_key_here
     WEATHER_API_KEY=your_weather_api_key_here
     ```
-    *Note: APIs that do not require a key will work without any configuration.*
+
+    _Note: APIs that do not require a key will work without any configuration._
 
 ### 4. Run the Server
 
@@ -139,11 +140,13 @@ You can interact with the API Hub in two ways: by making direct HTTP requests to
 Use any HTTP client like `curl` or `fetch` to call the endpoints.
 
 **Example: Get GitHub repositories for a user**
+
 ```bash
 curl http://localhost:8080/github/repos/facebook
 ```
 
 **Example: Search for a meal recipe**
+
 ```bash
 curl http://localhost:8080/mealdb/search/carbonara
 ```
@@ -164,31 +167,32 @@ npm install api-hub-client  # (Once published to npm)
 Instantiate the client with the server's base URL and call the available methods.
 
 ```typescript
-import { ApiHubClient } from 'api-hub-client';
+import { ApiHubClient } from "api-hub-client";
 
 async function fetchData() {
   const client = new ApiHubClient({
-    baseUrl: 'http://localhost:8080',
+    baseUrl: "http://localhost:8080",
   });
 
   try {
     // 1. Fetch GitHub repositories for the 'honojs' organization
-    console.log('Fetching GitHub repos...');
-    const repos = await client.github.getRepos('honojs');
+    console.log("Fetching GitHub repos...");
+    const repos = await client.github.getRepos("honojs");
     console.log(`Found ${repos.length} repos. First one: ${repos[0]?.name}`);
 
     // 2. Search for a meal from TheMealDB
-    console.log('\nSearching for meals...');
-    const meals = await client.mealdb.search('Arrabiata');
+    console.log("\nSearching for meals...");
+    const meals = await client.mealdb.search("Arrabiata");
     console.log(`Found ${meals.length} meals. First one: ${meals[0]?.strMeal}`);
 
     // 3. Search for YouTube videos
-    console.log('\nSearching YouTube...');
-    const videos = await client.youtube.search('Next.js 15 features');
-    console.log(`Found ${videos.length} videos. First one: ${videos[0]?.snippet?.title}`);
-
+    console.log("\nSearching YouTube...");
+    const videos = await client.youtube.search("Next.js 15 features");
+    console.log(
+      `Found ${videos.length} videos. First one: ${videos[0]?.snippet?.title}`
+    );
   } catch (error) {
-    console.error('An error occurred:', error.message);
+    console.error("An error occurred:", error.message);
   }
 }
 
@@ -199,30 +203,29 @@ fetchData();
 
 API Hub provides a unified interface for the following public APIs:
 
-| Category        | API Name                                    | Requires Key |
-| --------------- | ------------------------------------------- | :----------: |
-| **Development** | GitHub                                      |      No      |
-|                 | Hacker News                                 |      No      |
-|                 | JSONPlaceholder                             |      No      |
-|                 | APIC Agent                                  |      No      |
-| **Data & Info** | REST Countries                              |      No      |
-|                 | Google Books                                |      No      |
-|                 | Crypto (CoinGecko)                          |      No      |
-|                 | Bible                                       |      No      |
-| **Entertainment** | TheMealDB                                   |      No      |
-|                 | TheMovieDB (TMDB)                           |     Yes      |
-|                 | FlixQuest                                   |     Yes      |
-|                 | TV Maze                                     |      No      |
-|                 | Lyrics.ovh                                  |      No      |
-|                 | Chuck Norris Jokes                          |      No      |
-|                 | Random User Generator                       |      No      |
-|                 | Reddit                                      |      No      |
-| **News**        | NewsAPI                                     |     Yes      |
-|                 | New York Times                              |     Yes      |
-| **Science**     | APOD (Astronomy Picture of the Day)         |      No      |
-|                 | Weather API                                 |     Yes      |
-| **Media**       | YouTube                                     |     Yes      |
-
+| Category          | API Name                            | Requires Key |
+| ----------------- | ----------------------------------- | :----------: |
+| **Development**   | GitHub                              |      No      |
+|                   | Hacker News                         |      No      |
+|                   | JSONPlaceholder                     |      No      |
+|                   | APIC Agent                          |      No      |
+| **Data & Info**   | REST Countries                      |      No      |
+|                   | Google Books                        |      No      |
+|                   | Crypto (CoinGecko)                  |      No      |
+|                   | Bible                               |      No      |
+| **Entertainment** | TheMealDB                           |      No      |
+|                   | TheMovieDB (TMDB)                   |     Yes      |
+|                   | FlixQuest                           |     Yes      |
+|                   | TV Maze                             |      No      |
+|                   | Lyrics.ovh                          |      No      |
+|                   | Chuck Norris Jokes                  |      No      |
+|                   | Random User Generator               |      No      |
+|                   | Reddit                              |      No      |
+| **News**          | NewsAPI                             |     Yes      |
+|                   | New York Times                      |     Yes      |
+| **Science**       | APOD (Astronomy Picture of the Day) |      No      |
+|                   | Weather API                         |     Yes      |
+| **Media**         | YouTube                             |     Yes      |
 
 ## Contributing
 

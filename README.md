@@ -75,33 +75,40 @@ api-hub-repo/
 
 ## Getting Started
 
-Follow these steps to get the API Hub server running on your local machine.
+This repository contains two separate packages: the backend server (`api-hub`) and the frontend SDK (`api-hub-client`). Choose the setup guide based on what you want to use.
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/) (v18.x or later recommended)
 - [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.io/)
 
-### 1. Clone the Repository
+---
+
+## Backend Setup (API Hub Server)
+
+If you want to run your own API Hub server, follow these steps.
+
+### 1. Install the Backend Package
+
+Install the `@birukl7/api-hub` package from npm:
+
+```bash
+npm install @birukl7/api-hub
+```
+
+Or if you're working with the source code:
 
 ```bash
 git clone https://github.com/your-username/api-hub-repo.git
-cd api-hub-repo
-```
-
-### 2. Install Dependencies
-
-Install all necessary dependencies for both the server and client from the root directory.
-
-```bash
+cd api-hub-repo/api-hub
 npm install
 ```
 
-### 3. Configure API Keys
+### 2. Configure API Keys
 
 The server requires API keys for certain routes (e.g., YouTube, NewsAPI).
 
-1.  Navigate to the server directory:
+1.  Navigate to the server directory (if working with source):
     ```bash
     cd api-hub
     ```
@@ -121,7 +128,7 @@ The server requires API keys for certain routes (e.g., YouTube, NewsAPI).
 
     _Note: APIs that do not require a key will work without any configuration._
 
-### 4. Run the Server
+### 3. Run the Server
 
 Start the development server. It will watch for file changes and automatically restart.
 
@@ -129,7 +136,29 @@ Start the development server. It will watch for file changes and automatically r
 npm run dev
 ```
 
-The API Hub is now running and accessible at **`http://localhost:8080`**.
+The API Hub server is now running and accessible at **`http://localhost:7000`** (or your configured port).
+
+---
+
+## Frontend Setup (API Hub Client SDK)
+
+If you want to use the API Hub client in your TypeScript/JavaScript project, follow these steps.
+
+### 1. Install the Client Package
+
+Install the `api-hub-client` package from npm:
+
+```bash
+npm install api-hub-client
+```
+
+Or if you're working with the source code:
+
+```bash
+git clone https://github.com/your-username/api-hub-repo.git
+cd api-hub-repo/api-hub-client
+npm install
+```
 
 ## Usage
 
@@ -142,27 +171,26 @@ Use any HTTP client like `curl` or `fetch` to call the endpoints.
 **Example: Get GitHub repositories for a user**
 
 ```bash
-curl http://localhost:8080/github/repos/facebook
+curl http://localhost:7000/github/repos/facebook
 ```
 
 **Example: Search for a meal recipe**
 
 ```bash
-curl http://localhost:8080/mealdb/search/carbonara
+curl http://localhost:7000/mealdb/search/carbonara
 ```
 
 ### Using the `api-hub-client`
 
 For TypeScript/JavaScript projects, the client library provides the best experience.
 
-#### 1. Installation
+#### Installation
 
 ```bash
-npm install api-hub-client  # (Once published to npm)
-# For now, you can build it locally and link it.
+npm install api-hub-client
 ```
 
-#### 2. Code Example
+#### Code Example
 
 Instantiate the client with the server's base URL and call the available methods.
 
@@ -171,7 +199,7 @@ import { ApiHubClient } from "api-hub-client";
 
 async function fetchData() {
   const client = new ApiHubClient({
-    baseUrl: "http://localhost:8080",
+    baseUrl: "http://localhost:7000", // Default port is 7000
   });
 
   try {
@@ -231,15 +259,51 @@ API Hub provides a unified interface for the following public APIs:
 
 We welcome contributions from the community! Whether it's adding a new API, fixing a bug, or improving documentation, your help is appreciated.
 
-### How to Add a New API
+### Contributing to the Backend (`api-hub`)
 
-1.  **Create a Route File**: In `api-hub/src/routes/`, create a new file (e.g., `my-new-api.ts`).
-2.  **Define Endpoints**: Use the Hono framework to define the endpoints. Fetch data from the external API using `axios`.
-3.  **Add to Hub**: Import and register your new route in `api-hub/src/createApiHub.ts`.
-4.  **(Optional) Add to Client**: In `api-hub-client/src/`, create a new file to define typed methods for your new API and export it from `index.ts`.
+If you want to add a new API or fix issues in the backend server:
+
+1.  **Clone and Setup**: Clone the repository and navigate to the `api-hub` directory:
+    ```bash
+    git clone https://github.com/your-username/api-hub-repo.git
+    cd api-hub-repo/api-hub
+    npm install
+    ```
+
+2.  **Create a Route File**: In `api-hub/src/routes/`, create a new file (e.g., `my-new-api.ts`).
+
+3.  **Define Endpoints**: Use the Hono framework to define the endpoints. Fetch data from the external API using `axios`.
+
+4.  **Add to Hub**: Import and register your new route in `api-hub/src/createApiHub.ts`.
+
 5.  **Submit a Pull Request**: Open a PR with your changes. Please ensure your code follows the existing style and includes clear descriptions.
 
-For more details, please see the (forthcoming) `CONTRIBUTING.md` file.
+### Contributing to the Frontend SDK (`api-hub-client`)
+
+If you want to add client methods or fix issues in the frontend SDK:
+
+1.  **Clone and Setup**: Clone the repository and navigate to the `api-hub-client` directory:
+    ```bash
+    git clone https://github.com/your-username/api-hub-repo.git
+    cd api-hub-repo/api-hub-client
+    npm install
+    ```
+
+2.  **Create Client Methods**: In `api-hub-client/src/`, create a new file to define typed methods for your new API (or update existing ones).
+
+3.  **Export from Index**: Make sure to export your new client methods from `api-hub-client/src/index.ts`.
+
+4.  **Submit a Pull Request**: Open a PR with your changes. Please ensure your code follows the existing style and includes clear descriptions.
+
+### Adding a Complete New API
+
+To add a new API that works with both the backend and frontend:
+
+1.  Follow the **Backend** contribution steps above to add the server route.
+2.  Follow the **Frontend SDK** contribution steps above to add the client methods.
+3.  Ensure both implementations are consistent and properly typed.
+
+For more details, please see the `CONTRIBUTING.md` file.
 
 ## License
 

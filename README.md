@@ -312,5 +312,5 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 <div align="center">
-Authored by Group 2(EthioHub)
+Authored by Group 2(EthioHub) - Contributors: Fisseha Akele
 </div>

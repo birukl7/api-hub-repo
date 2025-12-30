@@ -305,6 +305,18 @@ To add a new API that works with both the backend and frontend:
 
 For more details, please see the `CONTRIBUTING.md` file.
 
+## Contributors
+
+**Group 2 (EthioHub)** - API Hub Development Team
+
+- Biniyam Feyissa 
+- Biruk Lemma
+- Fisseha Akele 
+- Geleab Worku 
+- Haymanot Aweke 
+- Hemenawit Girma 
+- Henok Asegedew 
+
 ## License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
@@ -312,5 +324,5 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 <div align="center">
-Authored by Group 2(EthioHub) - Contributors: Fisseha Akele
+Authored by Group 2(EthioHub)
 </div>

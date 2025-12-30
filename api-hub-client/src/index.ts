@@ -40,6 +40,7 @@ export class ApiHubClient {
   moviedb;
   news;
   newyorktimes;
+
   restcountries;
   tvmaze;
   weather;

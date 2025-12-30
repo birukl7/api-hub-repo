@@ -18,8 +18,9 @@ app.get("/movie", (c) => {
 //* GET STREAMING LINKS FOR MOVIE
 app.get("/movie/:tmdbID/:provider?", async (c)=>{
     var provider = c.req.param("provider") || "showbox"; // [showbox, vidsrcto]
+    if (provider !== 'showbox' && provider !== 'vidsrcto') provider = 'showbox'
     var tmdbID = c.req.param("tmdbID");
-    var result = await axios.get(`${flixquestBaseUrl}/${provider}/watch-movie?tmdbId=${tmdbID}&proxied=false`);
+    var result = await axios.get(`${flixquestBaseUrl}/${provider}/watch-movie?tmdbId=${encodeURIComponent(tmdbID)}&proxied=false`);
     return c.json(result.data)    
 })
 
@@ -35,7 +36,8 @@ app.get("/tv/:tmdbID/:season/:episode/:provider?", async(c)=>{
     var season = c.req.param("season");
     var episode = c.req.param("episode");
     var provider = c.req.param("provider") || "showbox"; // [showbox, vidsrcto]
-    var result = await axios.get(`${flixquestBaseUrl}/${provider}/watch-tv?tmdbId=${tmdbID}&season=${season}&episode=${episode}&proxied=false`);
+    if (provider !== 'showbox' && provider !== 'vidsrcto') provider = 'showbox'
+    var result = await axios.get(`${flixquestBaseUrl}/${provider}/watch-tv?tmdbId=${encodeURIComponent(tmdbID)}&season=${encodeURIComponent(season)}&episode=${encodeURIComponent(episode)}&proxied=false`);
     return c.json(result.data)   
 })
 
